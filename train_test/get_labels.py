@@ -4,7 +4,9 @@
 getting the training data from chip-seq data 
 min overlapping ratio = 50%
 """
-
+import sys
+import argparse
+import os
 import random
 def get_labels(filename):
     startlist = []
@@ -55,8 +57,6 @@ def get_labels(filename):
         a = a + 1
     f.close()
 
-
-import os
  
 def file_name(file_dir): 
     L=[] 
@@ -66,7 +66,6 @@ def file_name(file_dir):
                 L.append(os.path.join(root, file))
     return L
 
-files = file_name('/Users/wbb/Desktop/CHIP-seq/STAT3')
-for file in files:
-    get_labels(file)
-    print('done')
+if __name__ == "__main__":
+    filename = sys.argv[1]
+    get_labels(filename)

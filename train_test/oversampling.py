@@ -1,4 +1,8 @@
-def oversample(filename):
+import sys
+import argparse
+
+
+def oversample(filename, times):
     with open(filename,'r') as r:
         lines = r.readlines()
     with open(filename + 'ov','w') as w:
@@ -10,17 +14,16 @@ def oversample(filename):
             if label == 0 and mean >= 1:
                 print('haha')
                 i = 0
-                for i in range(12):
+                for i in range(times):
                     i = i + 1
                     w.write(line)
             else:
                 w.write(line)
-file = 'STAT3.HeLa-S3'
-file2 = 'STAT3.OCI'
-file3 = 'STAT3.MCF-10A'
-file4 = 'STAT3MD'
-#oversample(file2)
-#oversample(file3)
-oversample(file4)
+
+if __name__ == "__main__":
+    filename = sys.argv[1]
+    oversample(filename,6)
+
+
 
 

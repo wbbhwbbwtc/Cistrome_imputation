@@ -3,6 +3,8 @@
 """
 preparing the data of the whole genome for prediction
 """
+import sys
+import argparse
 
 def Generate(Cell_type, TF):
     with open(Cell_type + '.data2','w') as w:
@@ -18,7 +20,6 @@ def Generate(Cell_type, TF):
                 i = 1
                 if 'NA' in l2:
                     values = [0,0,0,0,0]
-                    print('here')
                 else:
                     values = l2.split()
                     values = values[5:]
@@ -31,8 +32,10 @@ def Generate(Cell_type, TF):
                     w.write(str(i) + ':' + str(value) + ' ')
                     i = i + 1
                 w.write(str(i) + ':' + str(values[11]) + '\n')
-CELL = 'OCI'
-TF = 'STAT3' 
-Generate(CELL,TF)
+
+if __name__ == "__main__":
+    TF = sys.argv[1]
+    CELL = sys.argv[2]
+    Generate(CELL,TF)
 
 
