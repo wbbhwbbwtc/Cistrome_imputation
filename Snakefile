@@ -38,8 +38,9 @@ rule motif:
         os.path.join(config['OutDIR'],'{TF}')
     params:
         test_regions = config['test_regions']
+        hg38 = config['hg38']
     shell:
-        'python3 motif_pre.py {TF} {params.test_regions} -n {output}'
+        'python3 motif_pre.py {TF} {input} {params.hg38} {params.test_regions} -n {output}'
 
 rule orange:
     pass
@@ -65,7 +66,7 @@ rule train_data: # If there are more than one samples(DNase), the sample from di
     shell:
         'perl training_data.pl {TF} {dnase}'
 
-rule oversample: # over-sample natetive regions with large DNase-seq median value
+rule oversample: # over-sample nagetive regions with large DNase-seq median value
     input:
         os.path.join(config['OutDIR'],'{TF}_samples')
     output:
