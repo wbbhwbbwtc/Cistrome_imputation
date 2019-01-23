@@ -82,7 +82,7 @@ rule train_test: #divided randomly in case of overfitting
         os.path.join(config['OutDIR'],'train_data')
     shell:
         'python3 divide.py'
-# Prediction 
+# Prediction  
 
 rule preparation:
     input:
